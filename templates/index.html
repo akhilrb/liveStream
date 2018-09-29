@@ -1,9 +1,21 @@
 <html>
   <head>
-    <title>Video Streaming Demonstration</title>
+    <title>Login</title>
   </head>
   <body>
-    <h1>Video Streaming Demonstration</h1>
-    <img src="{{ url_for('video_feed') }}">
+    <SCRIPT>
+    function passWord() {
+        window.open('stream.html')
+    }
+    function available() {
+        window.open('available.html')
+    }
+    </SCRIPT>
+    <CENTER>
+    <FORM>
+    <input type="button" value="Watch Stream" onClick="passWord()">
+    <input type="button" value="Check Availability" onClick="available()">
+    </FORM>
+    </CENTER>
   </body>
 </html>
