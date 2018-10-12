@@ -13,7 +13,7 @@ def detectPerson(confidenceThresholdLabel):
 
     net = cv2.dnn.readNetFromCaffe("MobileNetSSD_deploy.prototxt.txt", "MobileNetSSD_deploy.caffemodel")
     # optionally use DNN_TARGET_OPENCL_FP16
-    net.setPreferableTarget(cv2.dnn.DNN_TARGET_OPENCL)
+    # net.setPreferableTarget(cv2.dnn.DNN_TARGET_OPENCL)
 
     cap=cv2.VideoCapture(0)
     try:
