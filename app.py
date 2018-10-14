@@ -34,7 +34,7 @@ def index():
 #     return render_template("check_avail_wait.html")
 
 def isAvailable():
-    """get my status in room"""
+    #get my status in room
     detectedPerson = detectPerson(0.3)
     print("Return code: " + str(detectedPerson))
     if(detectedPerson == -3):
@@ -49,7 +49,7 @@ def isAvailable():
     else:
         n = detectedPerson.find(':')
         logging.info('REQ_AVAIL \tYES')
-        if(float(detectedPerson[n+1:detectedPerson.find('%')-1])>70):
+        if(float(detectedPerson[n+1:detectedPerson.find('%')-1])>90):
             return Response(b'I\'m '+detectedPerson[n+1:detectedPerson.find('%')+1]+' sure that Akhil is available in his room right now!')
         else:
             return Response(b'Akhil is available in his room right now!')
@@ -75,7 +75,7 @@ def sendDM():
         message=request.form['message']
 
         if form.validate():
-            logging.info('REQ_DM' + name + ': ' + message)
+            logging.info('REQ_DM |' + name + ': ' + message)
             flash('Your message has been sent!\nIf everything works perfectly, Akhil should receive a direct ping on his wearable device.')
         else:
             flash('Error: All the form fields are required.')
@@ -86,13 +86,11 @@ STREAM
 '''''
 
 def check_auth(username, password):
-    """This function is called to check if a username /
-    password combination is valid."""
-    return username == 'admin' and password == 'gillette'
+    return username == 'admin' and password == 'admin'
 
 def authenticate():
     logging.warning('AUTH_INCORRECT')
-    """Sends a 401 response that enables basic auth"""
+    #Sends a 401 response that enables basic authorisation
     return Response(
     'Verification Failed.\n'
     'Check your credentials!', 401,
@@ -123,7 +121,7 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
-    """Video streaming route. Put this in the src attribute of an img tag."""
+    #Video streaming route. Feeds the src attribute of the img tag
     return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
